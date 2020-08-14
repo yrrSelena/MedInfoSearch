@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yrr.dao.MethodLCMapper">
+  <resultMap id="BaseResultMap" type="com.yrr.bean.MethodLC">
+    <id column="medId" jdbcType="INTEGER" property="medId" />
+    <result column="detector" jdbcType="VARCHAR" property="detector" />
+    <result column="excitationWL" jdbcType="VARCHAR" property="excitationWL" />
+    <result column="emissionWL" jdbcType="VARCHAR" property="emissionWL" />
+    <result column="chromatographicCol" jdbcType="VARCHAR" property="chromatographicCol" />
+    <result column="colTemperature" jdbcType="VARCHAR" property="colTemperature" />
+    <result column="mobilePhase" jdbcType="VARCHAR" property="mobilePhase" />
+    <result column="flowRate" jdbcType="VARCHAR" property="flowRate" />
+    <result column="injectionVolume" jdbcType="VARCHAR" property="injectionVolume" />
+    <result column="pretreatmentMethod" jdbcType="VARCHAR" property="pretreatmentMethod" />
+    <result column="detectionLimit" jdbcType="VARCHAR" property="detectionLimit" />
+    <result column="featureMap" jdbcType="VARCHAR" property="featureMap" />
+    <result column="reference" jdbcType="VARCHAR" property="reference" />
+    <result column="samples" jdbcType="VARCHAR" property="samples" />
+    <result column="otherDeterminants" jdbcType="VARCHAR" property="otherDeterminants" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    medId, detector, excitationWL, emissionWL, chromatographicCol, colTemperature, mobilePhase, 
+    flowRate, injectionVolume, pretreatmentMethod, detectionLimit, featureMap, reference, 
+    samples, otherDeterminants
+  </sql>
+  <select id="selectByExample" parameterType="com.yrr.bean.MethodLCExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from methodlc
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from methodlc
+    where medId = #{medId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from methodlc
+    where medId = #{medId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yrr.bean.MethodLCExample">
+    delete from methodlc
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yrr.bean.MethodLC">
+    insert into methodlc (medId, detector, excitationWL, 
+      emissionWL, chromatographicCol, colTemperature, 
+      mobilePhase, flowRate, injectionVolume, 
+      pretreatmentMethod, detectionLimit, featureMap, 
+      reference, samples, otherDeterminants
+      )
+    values (#{medId,jdbcType=INTEGER}, #{detector,jdbcType=VARCHAR}, #{excitationWL,jdbcType=VARCHAR}, 
+      #{emissionWL,jdbcType=VARCHAR}, #{chromatographicCol,jdbcType=VARCHAR}, #{colTemperature,jdbcType=VARCHAR}, 
+      #{mobilePhase,jdbcType=VARCHAR}, #{flowRate,jdbcType=VARCHAR}, #{injectionVolume,jdbcType=VARCHAR}, 
+      #{pretreatmentMethod,jdbcType=VARCHAR}, #{detectionLimit,jdbcType=VARCHAR}, #{featureMap,jdbcType=VARCHAR}, 
+      #{reference,jdbcType=VARCHAR}, #{samples,jdbcType=VARCHAR}, #{otherDeterminants,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yrr.bean.MethodLC">
+    insert into methodlc
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="medId != null">
+        medId,
+      </if>
+      <if test="detector != null">
+        detector,
+      </if>
+      <if test="excitationWL != null">
+        excitationWL,
+      </if>
+      <if test="emissionWL != null">
+        emissionWL,
+      </if>
+      <if test="chromatographicCol != null">
+        chromatographicCol,
+      </if>
+      <if test="colTemperature != null">
+        colTemperature,
+      </if>
+      <if test="mobilePhase != null">
+        mobilePhase,
+      </if>
+      <if test="flowRate != null">
+        flowRate,
+      </if>
+      <if test="injectionVolume != null">
+        injectionVolume,
+      </if>
+      <if test="pretreatmentMethod != null">
+        pretreatmentMethod,
+      </if>
+      <if test="detectionLimit != null">
+        detectionLimit,
+      </if>
+      <if test="featureMap != null">
+        featureMap,
+      </if>
+      <if test="reference != null">
+        reference,
+      </if>
+      <if test="samples != null">
+        samples,
+      </if>
+      <if test="otherDeterminants != null">
+        otherDeterminants,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="medId != null">
+        #{medId,jdbcType=INTEGER},
+      </if>
+      <if test="detector != null">
+        #{detector,jdbcType=VARCHAR},
+      </if>
+      <if test="excitationWL != null">
+        #{excitationWL,jdbcType=VARCHAR},
+      </if>
+      <if test="emissionWL != null">
+        #{emissionWL,jdbcType=VARCHAR},
+      </if>
+      <if test="chromatographicCol != null">
+        #{chromatographicCol,jdbcType=VARCHAR},
+      </if>
+      <if test="colTemperature != null">
+        #{colTemperature,jdbcType=VARCHAR},
+      </if>
+      <if test="mobilePhase != null">
+        #{mobilePhase,jdbcType=VARCHAR},
+      </if>
+      <if test="flowRate != null">
+        #{flowRate,jdbcType=VARCHAR},
+      </if>
+      <if test="injectionVolume != null">
+        #{injectionVolume,jdbcType=VARCHAR},
+      </if>
+      <if test="pretreatmentMethod != null">
+        #{pretreatmentMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="detectionLimit != null">
+        #{detectionLimit,jdbcType=VARCHAR},
+      </if>
+      <if test="featureMap != null">
+        #{featureMap,jdbcType=VARCHAR},
+      </if>
+      <if test="reference != null">
+        #{reference,jdbcType=VARCHAR},
+      </if>
+      <if test="samples != null">
+        #{samples,jdbcType=VARCHAR},
+      </if>
+      <if test="otherDeterminants != null">
+        #{otherDeterminants,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yrr.bean.MethodLCExample" resultType="java.lang.Long">
+    select count(*) from methodlc
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update methodlc
+    <set>
+      <if test="record.medId != null">
+        medId = #{record.medId,jdbcType=INTEGER},
+      </if>
+      <if test="record.detector != null">
+        detector = #{record.detector,jdbcType=VARCHAR},
+      </if>
+      <if test="record.excitationWL != null">
+        excitationWL = #{record.excitationWL,jdbcType=VARCHAR},
+      </if>
+      <if test="record.emissionWL != null">
+        emissionWL = #{record.emissionWL,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chromatographicCol != null">
+        chromatographicCol = #{record.chromatographicCol,jdbcType=VARCHAR},
+      </if>
+      <if test="record.colTemperature != null">
+        colTemperature = #{record.colTemperature,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobilePhase != null">
+        mobilePhase = #{record.mobilePhase,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flowRate != null">
+        flowRate = #{record.flowRate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.injectionVolume != null">
+        injectionVolume = #{record.injectionVolume,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pretreatmentMethod != null">
+        pretreatmentMethod = #{record.pretreatmentMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="record.detectionLimit != null">
+        detectionLimit = #{record.detectionLimit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.featureMap != null">
+        featureMap = #{record.featureMap,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reference != null">
+        reference = #{record.reference,jdbcType=VARCHAR},
+      </if>
+      <if test="record.samples != null">
+        samples = #{record.samples,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherDeterminants != null">
+        otherDeterminants = #{record.otherDeterminants,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update methodlc
+    set medId = #{record.medId,jdbcType=INTEGER},
+      detector = #{record.detector,jdbcType=VARCHAR},
+      excitationWL = #{record.excitationWL,jdbcType=VARCHAR},
+      emissionWL = #{record.emissionWL,jdbcType=VARCHAR},
+      chromatographicCol = #{record.chromatographicCol,jdbcType=VARCHAR},
+      colTemperature = #{record.colTemperature,jdbcType=VARCHAR},
+      mobilePhase = #{record.mobilePhase,jdbcType=VARCHAR},
+      flowRate = #{record.flowRate,jdbcType=VARCHAR},
+      injectionVolume = #{record.injectionVolume,jdbcType=VARCHAR},
+      pretreatmentMethod = #{record.pretreatmentMethod,jdbcType=VARCHAR},
+      detectionLimit = #{record.detectionLimit,jdbcType=VARCHAR},
+      featureMap = #{record.featureMap,jdbcType=VARCHAR},
+      reference = #{record.reference,jdbcType=VARCHAR},
+      samples = #{record.samples,jdbcType=VARCHAR},
+      otherDeterminants = #{record.otherDeterminants,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yrr.bean.MethodLC">
+    update methodlc
+    <set>
+      <if test="detector != null">
+        detector = #{detector,jdbcType=VARCHAR},
+      </if>
+      <if test="excitationWL != null">
+        excitationWL = #{excitationWL,jdbcType=VARCHAR},
+      </if>
+      <if test="emissionWL != null">
+        emissionWL = #{emissionWL,jdbcType=VARCHAR},
+      </if>
+      <if test="chromatographicCol != null">
+        chromatographicCol = #{chromatographicCol,jdbcType=VARCHAR},
+      </if>
+      <if test="colTemperature != null">
+        colTemperature = #{colTemperature,jdbcType=VARCHAR},
+      </if>
+      <if test="mobilePhase != null">
+        mobilePhase = #{mobilePhase,jdbcType=VARCHAR},
+      </if>
+      <if test="flowRate != null">
+        flowRate = #{flowRate,jdbcType=VARCHAR},
+      </if>
+      <if test="injectionVolume != null">
+        injectionVolume = #{injectionVolume,jdbcType=VARCHAR},
+      </if>
+      <if test="pretreatmentMethod != null">
+        pretreatmentMethod = #{pretreatmentMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="detectionLimit != null">
+        detectionLimit = #{detectionLimit,jdbcType=VARCHAR},
+      </if>
+      <if test="featureMap != null">
+        featureMap = #{featureMap,jdbcType=VARCHAR},
+      </if>
+      <if test="reference != null">
+        reference = #{reference,jdbcType=VARCHAR},
+      </if>
+      <if test="samples != null">
+        samples = #{samples,jdbcType=VARCHAR},
+      </if>
+      <if test="otherDeterminants != null">
+        otherDeterminants = #{otherDeterminants,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where medId = #{medId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yrr.bean.MethodLC">
+    update methodlc
+    set detector = #{detector,jdbcType=VARCHAR},
+      excitationWL = #{excitationWL,jdbcType=VARCHAR},
+      emissionWL = #{emissionWL,jdbcType=VARCHAR},
+      chromatographicCol = #{chromatographicCol,jdbcType=VARCHAR},
+      colTemperature = #{colTemperature,jdbcType=VARCHAR},
+      mobilePhase = #{mobilePhase,jdbcType=VARCHAR},
+      flowRate = #{flowRate,jdbcType=VARCHAR},
+      injectionVolume = #{injectionVolume,jdbcType=VARCHAR},
+      pretreatmentMethod = #{pretreatmentMethod,jdbcType=VARCHAR},
+      detectionLimit = #{detectionLimit,jdbcType=VARCHAR},
+      featureMap = #{featureMap,jdbcType=VARCHAR},
+      reference = #{reference,jdbcType=VARCHAR},
+      samples = #{samples,jdbcType=VARCHAR},
+      otherDeterminants = #{otherDeterminants,jdbcType=VARCHAR}
+    where medId = #{medId,jdbcType=INTEGER}
+  </update>
+</mapper>

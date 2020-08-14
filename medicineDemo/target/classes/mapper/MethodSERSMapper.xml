@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yrr.dao.MethodSERSMapper">
+  <resultMap id="BaseResultMap" type="com.yrr.bean.MethodSERS">
+    <id column="medId" jdbcType="INTEGER" property="medId" />
+    <result column="charPeak1" jdbcType="VARCHAR" property="charPeak1" />
+    <result column="charPeak2" jdbcType="VARCHAR" property="charPeak2" />
+    <result column="charPeak3" jdbcType="VARCHAR" property="charPeak3" />
+    <result column="charPeak4" jdbcType="VARCHAR" property="charPeak4" />
+    <result column="charPeak5" jdbcType="VARCHAR" property="charPeak5" />
+    <result column="charPeak6" jdbcType="VARCHAR" property="charPeak6" />
+    <result column="charPeak7" jdbcType="VARCHAR" property="charPeak7" />
+    <result column="charPeak8" jdbcType="VARCHAR" property="charPeak8" />
+    <result column="detectionLimit" jdbcType="VARCHAR" property="detectionLimit" />
+    <result column="featureMap" jdbcType="VARCHAR" property="featureMap" />
+    <result column="reference" jdbcType="VARCHAR" property="reference" />
+    <result column="samples" jdbcType="VARCHAR" property="samples" />
+    <result column="otherDeterminants" jdbcType="VARCHAR" property="otherDeterminants" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    medId, charPeak1, charPeak2, charPeak3, charPeak4, charPeak5, charPeak6, charPeak7, 
+    charPeak8, detectionLimit, featureMap, reference, samples, otherDeterminants
+  </sql>
+  <select id="selectByExample" parameterType="com.yrr.bean.MethodSERSExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from methodsers
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from methodsers
+    where medId = #{medId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from methodsers
+    where medId = #{medId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yrr.bean.MethodSERSExample">
+    delete from methodsers
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yrr.bean.MethodSERS">
+    insert into methodsers (medId, charPeak1, charPeak2, 
+      charPeak3, charPeak4, charPeak5, 
+      charPeak6, charPeak7, charPeak8, 
+      detectionLimit, featureMap, reference, 
+      samples, otherDeterminants)
+    values (#{medId,jdbcType=INTEGER}, #{charPeak1,jdbcType=VARCHAR}, #{charPeak2,jdbcType=VARCHAR}, 
+      #{charPeak3,jdbcType=VARCHAR}, #{charPeak4,jdbcType=VARCHAR}, #{charPeak5,jdbcType=VARCHAR}, 
+      #{charPeak6,jdbcType=VARCHAR}, #{charPeak7,jdbcType=VARCHAR}, #{charPeak8,jdbcType=VARCHAR}, 
+      #{detectionLimit,jdbcType=VARCHAR}, #{featureMap,jdbcType=VARCHAR}, #{reference,jdbcType=VARCHAR}, 
+      #{samples,jdbcType=VARCHAR}, #{otherDeterminants,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yrr.bean.MethodSERS">
+    insert into methodsers
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="medId != null">
+        medId,
+      </if>
+      <if test="charPeak1 != null">
+        charPeak1,
+      </if>
+      <if test="charPeak2 != null">
+        charPeak2,
+      </if>
+      <if test="charPeak3 != null">
+        charPeak3,
+      </if>
+      <if test="charPeak4 != null">
+        charPeak4,
+      </if>
+      <if test="charPeak5 != null">
+        charPeak5,
+      </if>
+      <if test="charPeak6 != null">
+        charPeak6,
+      </if>
+      <if test="charPeak7 != null">
+        charPeak7,
+      </if>
+      <if test="charPeak8 != null">
+        charPeak8,
+      </if>
+      <if test="detectionLimit != null">
+        detectionLimit,
+      </if>
+      <if test="featureMap != null">
+        featureMap,
+      </if>
+      <if test="reference != null">
+        reference,
+      </if>
+      <if test="samples != null">
+        samples,
+      </if>
+      <if test="otherDeterminants != null">
+        otherDeterminants,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="medId != null">
+        #{medId,jdbcType=INTEGER},
+      </if>
+      <if test="charPeak1 != null">
+        #{charPeak1,jdbcType=VARCHAR},
+      </if>
+      <if test="charPeak2 != null">
+        #{charPeak2,jdbcType=VARCHAR},
+      </if>
+      <if test="charPeak3 != null">
+        #{charPeak3,jdbcType=VARCHAR},
+      </if>
+      <if test="charPeak4 != null">
+        #{charPeak4,jdbcType=VARCHAR},
+      </if>
+      <if test="charPeak5 != null">
+        #{charPeak5,jdbcType=VARCHAR},
+      </if>
+      <if test="charPeak6 != null">
+        #{charPeak6,jdbcType=VARCHAR},
+      </if>
+      <if test="charPeak7 != null">
+        #{charPeak7,jdbcType=VARCHAR},
+      </if>
+      <if test="charPeak8 != null">
+        #{charPeak8,jdbcType=VARCHAR},
+      </if>
+      <if test="detectionLimit != null">
+        #{detectionLimit,jdbcType=VARCHAR},
+      </if>
+      <if test="featureMap != null">
+        #{featureMap,jdbcType=VARCHAR},
+      </if>
+      <if test="reference != null">
+        #{reference,jdbcType=VARCHAR},
+      </if>
+      <if test="samples != null">
+        #{samples,jdbcType=VARCHAR},
+      </if>
+      <if test="otherDeterminants != null">
+        #{otherDeterminants,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yrr.bean.MethodSERSExample" resultType="java.lang.Long">
+    select count(*) from methodsers
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update methodsers
+    <set>
+      <if test="record.medId != null">
+        medId = #{record.medId,jdbcType=INTEGER},
+      </if>
+      <if test="record.charPeak1 != null">
+        charPeak1 = #{record.charPeak1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.charPeak2 != null">
+        charPeak2 = #{record.charPeak2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.charPeak3 != null">
+        charPeak3 = #{record.charPeak3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.charPeak4 != null">
+        charPeak4 = #{record.charPeak4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.charPeak5 != null">
+        charPeak5 = #{record.charPeak5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.charPeak6 != null">
+        charPeak6 = #{record.charPeak6,jdbcType=VARCHAR},
+      </if>
+      <if test="record.charPeak7 != null">
+        charPeak7 = #{record.charPeak7,jdbcType=VARCHAR},
+      </if>
+      <if test="record.charPeak8 != null">
+        charPeak8 = #{record.charPeak8,jdbcType=VARCHAR},
+      </if>
+      <if test="record.detectionLimit != null">
+        detectionLimit = #{record.detectionLimit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.featureMap != null">
+        featureMap = #{record.featureMap,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reference != null">
+        reference = #{record.reference,jdbcType=VARCHAR},
+      </if>
+      <if test="record.samples != null">
+        samples = #{record.samples,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherDeterminants != null">
+        otherDeterminants = #{record.otherDeterminants,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update methodsers
+    set medId = #{record.medId,jdbcType=INTEGER},
+      charPeak1 = #{record.charPeak1,jdbcType=VARCHAR},
+      charPeak2 = #{record.charPeak2,jdbcType=VARCHAR},
+      charPeak3 = #{record.charPeak3,jdbcType=VARCHAR},
+      charPeak4 = #{record.charPeak4,jdbcType=VARCHAR},
+      charPeak5 = #{record.charPeak5,jdbcType=VARCHAR},
+      charPeak6 = #{record.charPeak6,jdbcType=VARCHAR},
+      charPeak7 = #{record.charPeak7,jdbcType=VARCHAR},
+      charPeak8 = #{record.charPeak8,jdbcType=VARCHAR},
+      detectionLimit = #{record.detectionLimit,jdbcType=VARCHAR},
+      featureMap = #{record.featureMap,jdbcType=VARCHAR},
+      reference = #{record.reference,jdbcType=VARCHAR},
+      samples = #{record.samples,jdbcType=VARCHAR},
+      otherDeterminants = #{record.otherDeterminants,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yrr.bean.MethodSERS">
+    update methodsers
+    <set>
+      <if test="charPeak1 != null">
+        charPeak1 = #{charPeak1,jdbcType=VARCHAR},
+      </if>
+      <if test="charPeak2 != null">
+        charPeak2 = #{charPeak2,jdbcType=VARCHAR},
+      </if>
+      <if test="charPeak3 != null">
+        charPeak3 = #{charPeak3,jdbcType=VARCHAR},
+      </if>
+      <if test="charPeak4 != null">
+        charPeak4 = #{charPeak4,jdbcType=VARCHAR},
+      </if>
+      <if test="charPeak5 != null">
+        charPeak5 = #{charPeak5,jdbcType=VARCHAR},
+      </if>
+      <if test="charPeak6 != null">
+        charPeak6 = #{charPeak6,jdbcType=VARCHAR},
+      </if>
+      <if test="charPeak7 != null">
+        charPeak7 = #{charPeak7,jdbcType=VARCHAR},
+      </if>
+      <if test="charPeak8 != null">
+        charPeak8 = #{charPeak8,jdbcType=VARCHAR},
+      </if>
+      <if test="detectionLimit != null">
+        detectionLimit = #{detectionLimit,jdbcType=VARCHAR},
+      </if>
+      <if test="featureMap != null">
+        featureMap = #{featureMap,jdbcType=VARCHAR},
+      </if>
+      <if test="reference != null">
+        reference = #{reference,jdbcType=VARCHAR},
+      </if>
+      <if test="samples != null">
+        samples = #{samples,jdbcType=VARCHAR},
+      </if>
+      <if test="otherDeterminants != null">
+        otherDeterminants = #{otherDeterminants,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where medId = #{medId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yrr.bean.MethodSERS">
+    update methodsers
+    set charPeak1 = #{charPeak1,jdbcType=VARCHAR},
+      charPeak2 = #{charPeak2,jdbcType=VARCHAR},
+      charPeak3 = #{charPeak3,jdbcType=VARCHAR},
+      charPeak4 = #{charPeak4,jdbcType=VARCHAR},
+      charPeak5 = #{charPeak5,jdbcType=VARCHAR},
+      charPeak6 = #{charPeak6,jdbcType=VARCHAR},
+      charPeak7 = #{charPeak7,jdbcType=VARCHAR},
+      charPeak8 = #{charPeak8,jdbcType=VARCHAR},
+      detectionLimit = #{detectionLimit,jdbcType=VARCHAR},
+      featureMap = #{featureMap,jdbcType=VARCHAR},
+      reference = #{reference,jdbcType=VARCHAR},
+      samples = #{samples,jdbcType=VARCHAR},
+      otherDeterminants = #{otherDeterminants,jdbcType=VARCHAR}
+    where medId = #{medId,jdbcType=INTEGER}
+  </update>
+</mapper>

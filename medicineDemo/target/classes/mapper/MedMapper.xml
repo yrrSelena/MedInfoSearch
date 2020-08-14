@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yrr.dao.MedMapper">
+  <resultMap id="BaseResultMap" type="com.yrr.bean.Med">
+    <id column="medId" jdbcType="INTEGER" property="medId" />
+    <result column="cnName" jdbcType="VARCHAR" property="cnName" />
+    <result column="casNum" jdbcType="VARCHAR" property="casNum" />
+    <result column="ecNum" jdbcType="VARCHAR" property="ecNum" />
+    <result column="molWt" jdbcType="VARCHAR" property="molWt" />
+    <result column="mpmin" jdbcType="VARCHAR" property="mpmin" />
+    <result column="mpmax" jdbcType="VARCHAR" property="mpmax" />
+    <result column="bpmin" jdbcType="VARCHAR" property="bpmin" />
+    <result column="bpmax" jdbcType="VARCHAR" property="bpmax" />
+    <result column="iarc" jdbcType="VARCHAR" property="iarc" />
+    <result column="introduction" jdbcType="VARCHAR" property="introduction" />
+    <result column="appearance" jdbcType="VARCHAR" property="appearance" />
+    <result column="solubility" jdbcType="VARCHAR" property="solubility" />
+    <result column="toxicity" jdbcType="VARCHAR" property="toxicity" />
+    <result column="limitRequirement" jdbcType="VARCHAR" property="limitRequirement" />
+    <result column="clinicalCharacter" jdbcType="VARCHAR" property="clinicalCharacter" />
+    <result column="metabolicPathway" jdbcType="VARCHAR" property="metabolicPathway" />
+    <result column="food" jdbcType="VARCHAR" property="food" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    medId, cnName, casNum, ecNum, molWt, mpmin, mpmax, bpmin, bpmax, iarc, introduction,
+    appearance, solubility, toxicity, limitRequirement, clinicalCharacter, metabolicPathway, 
+     food
+  </sql>
+  <select id="selectByExample" parameterType="com.yrr.bean.MedExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from med
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from med
+    where medId = #{medId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from med
+    where medId = #{medId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yrr.bean.MedExample">
+    delete from med
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yrr.bean.Med">
+    insert into med (medId, cnName,
+      casNum, ecNum, molWt, 
+      mpmin, mpmax, bpmin, 
+      bpmax, iarc, introduction, 
+      appearance, solubility, toxicity, 
+      limitRequirement, clinicalCharacter, metabolicPathway, 
+       food)
+    values (#{medId,jdbcType=INTEGER}, #{cnName,jdbcType=VARCHAR},
+      #{casNum,jdbcType=VARCHAR}, #{ecNum,jdbcType=VARCHAR}, #{molWt,jdbcType=VARCHAR}, 
+      #{mpmin,jdbcType=VARCHAR}, #{mpmax,jdbcType=VARCHAR}, #{bpmin,jdbcType=VARCHAR}, 
+      #{bpmax,jdbcType=VARCHAR}, #{iarc,jdbcType=VARCHAR}, #{introduction,jdbcType=VARCHAR}, 
+      #{appearance,jdbcType=VARCHAR}, #{solubility,jdbcType=VARCHAR}, #{toxicity,jdbcType=VARCHAR}, 
+      #{limitRequirement,jdbcType=VARCHAR}, #{clinicalCharacter,jdbcType=VARCHAR}, #{metabolicPathway,jdbcType=VARCHAR}, 
+      #{food,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yrr.bean.Med">
+    insert into med
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="medId != null">
+        medId,
+      </if>
+      <if test="cnName != null">
+        cnName,
+      </if>
+      <if test="casNum != null">
+        casNum,
+      </if>
+      <if test="ecNum != null">
+        ecNum,
+      </if>
+      <if test="molWt != null">
+        molWt,
+      </if>
+      <if test="mpmin != null">
+        mpmin,
+      </if>
+      <if test="mpmax != null">
+        mpmax,
+      </if>
+      <if test="bpmin != null">
+        bpmin,
+      </if>
+      <if test="bpmax != null">
+        bpmax,
+      </if>
+      <if test="iarc != null">
+        iarc,
+      </if>
+      <if test="introduction != null">
+        introduction,
+      </if>
+      <if test="appearance != null">
+        appearance,
+      </if>
+      <if test="solubility != null">
+        solubility,
+      </if>
+      <if test="toxicity != null">
+        toxicity,
+      </if>
+      <if test="limitRequirement != null">
+        limitRequirement,
+      </if>
+      <if test="clinicalCharacter != null">
+        clinicalCharacter,
+      </if>
+      <if test="metabolicPathway != null">
+        metabolicPathway,
+      </if>
+      <if test="food != null">
+        food,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="medId != null">
+        #{medId,jdbcType=INTEGER},
+      </if>
+      <if test="cnName != null">
+        #{cnName,jdbcType=VARCHAR},
+      </if>
+      <if test="casNum != null">
+        #{casNum,jdbcType=VARCHAR},
+      </if>
+      <if test="ecNum != null">
+        #{ecNum,jdbcType=VARCHAR},
+      </if>
+      <if test="molWt != null">
+        #{molWt,jdbcType=VARCHAR},
+      </if>
+      <if test="mpmin != null">
+        #{mpmin,jdbcType=VARCHAR},
+      </if>
+      <if test="mpmax != null">
+        #{mpmax,jdbcType=VARCHAR},
+      </if>
+      <if test="bpmin != null">
+        #{bpmin,jdbcType=VARCHAR},
+      </if>
+      <if test="bpmax != null">
+        #{bpmax,jdbcType=VARCHAR},
+      </if>
+      <if test="iarc != null">
+        #{iarc,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null">
+        #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="appearance != null">
+        #{appearance,jdbcType=VARCHAR},
+      </if>
+      <if test="solubility != null">
+        #{solubility,jdbcType=VARCHAR},
+      </if>
+      <if test="toxicity != null">
+        #{toxicity,jdbcType=VARCHAR},
+      </if>
+      <if test="limitRequirement != null">
+        #{limitRequirement,jdbcType=VARCHAR},
+      </if>
+      <if test="clinicalCharacter != null">
+        #{clinicalCharacter,jdbcType=VARCHAR},
+      </if>
+      <if test="metabolicPathway != null">
+        #{metabolicPathway,jdbcType=VARCHAR},
+      </if>
+      <if test="food != null">
+        #{food,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yrr.bean.MedExample" resultType="java.lang.Long">
+    select count(*) from med
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update med
+    <set>
+      <if test="record.medId != null">
+        medId = #{record.medId,jdbcType=INTEGER},
+      </if>
+      <if test="record.cnName != null">
+        cnName = #{record.cnName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.casNum != null">
+        casNum = #{record.casNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ecNum != null">
+        ecNum = #{record.ecNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.molWt != null">
+        molWt = #{record.molWt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mpmin != null">
+        mpmin = #{record.mpmin,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mpmax != null">
+        mpmax = #{record.mpmax,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bpmin != null">
+        bpmin = #{record.bpmin,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bpmax != null">
+        bpmax = #{record.bpmax,jdbcType=VARCHAR},
+      </if>
+      <if test="record.iarc != null">
+        iarc = #{record.iarc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.introduction != null">
+        introduction = #{record.introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appearance != null">
+        appearance = #{record.appearance,jdbcType=VARCHAR},
+      </if>
+      <if test="record.solubility != null">
+        solubility = #{record.solubility,jdbcType=VARCHAR},
+      </if>
+      <if test="record.toxicity != null">
+        toxicity = #{record.toxicity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.limitRequirement != null">
+        limitRequirement = #{record.limitRequirement,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clinicalCharacter != null">
+        clinicalCharacter = #{record.clinicalCharacter,jdbcType=VARCHAR},
+      </if>
+      <if test="record.metabolicPathway != null">
+        metabolicPathway = #{record.metabolicPathway,jdbcType=VARCHAR},
+      </if>
+      <if test="record.food != null">
+        food = #{record.food,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update med
+    set medId = #{record.medId,jdbcType=INTEGER},
+      cnName = #{record.cnName,jdbcType=VARCHAR},
+      casNum = #{record.casNum,jdbcType=VARCHAR},
+      ecNum = #{record.ecNum,jdbcType=VARCHAR},
+      molWt = #{record.molWt,jdbcType=VARCHAR},
+      mpmin = #{record.mpmin,jdbcType=VARCHAR},
+      mpmax = #{record.mpmax,jdbcType=VARCHAR},
+      bpmin = #{record.bpmin,jdbcType=VARCHAR},
+      bpmax = #{record.bpmax,jdbcType=VARCHAR},
+      iarc = #{record.iarc,jdbcType=VARCHAR},
+      introduction = #{record.introduction,jdbcType=VARCHAR},
+      appearance = #{record.appearance,jdbcType=VARCHAR},
+      solubility = #{record.solubility,jdbcType=VARCHAR},
+      toxicity = #{record.toxicity,jdbcType=VARCHAR},
+      limitRequirement = #{record.limitRequirement,jdbcType=VARCHAR},
+      clinicalCharacter = #{record.clinicalCharacter,jdbcType=VARCHAR},
+      metabolicPathway = #{record.metabolicPathway,jdbcType=VARCHAR},
+      food = #{record.food,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yrr.bean.Med">
+    update med
+    <set>
+      <if test="cnName != null">
+        cnName = #{cnName,jdbcType=VARCHAR},
+      </if>
+      <if test="casNum != null">
+        casNum = #{casNum,jdbcType=VARCHAR},
+      </if>
+      <if test="ecNum != null">
+        ecNum = #{ecNum,jdbcType=VARCHAR},
+      </if>
+      <if test="molWt != null">
+        molWt = #{molWt,jdbcType=VARCHAR},
+      </if>
+      <if test="mpmin != null">
+        mpmin = #{mpmin,jdbcType=VARCHAR},
+      </if>
+      <if test="mpmax != null">
+        mpmax = #{mpmax,jdbcType=VARCHAR},
+      </if>
+      <if test="bpmin != null">
+        bpmin = #{bpmin,jdbcType=VARCHAR},
+      </if>
+      <if test="bpmax != null">
+        bpmax = #{bpmax,jdbcType=VARCHAR},
+      </if>
+      <if test="iarc != null">
+        iarc = #{iarc,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null">
+        introduction = #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="appearance != null">
+        appearance = #{appearance,jdbcType=VARCHAR},
+      </if>
+      <if test="solubility != null">
+        solubility = #{solubility,jdbcType=VARCHAR},
+      </if>
+      <if test="toxicity != null">
+        toxicity = #{toxicity,jdbcType=VARCHAR},
+      </if>
+      <if test="limitRequirement != null">
+        limitRequirement = #{limitRequirement,jdbcType=VARCHAR},
+      </if>
+      <if test="clinicalCharacter != null">
+        clinicalCharacter = #{clinicalCharacter,jdbcType=VARCHAR},
+      </if>
+      <if test="metabolicPathway != null">
+        metabolicPathway = #{metabolicPathway,jdbcType=VARCHAR},
+      </if>
+      <if test="food != null">
+        food = #{food,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where medId = #{medId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yrr.bean.Med">
+    update med
+    set cnName = #{cnName,jdbcType=VARCHAR},
+      casNum = #{casNum,jdbcType=VARCHAR},
+      ecNum = #{ecNum,jdbcType=VARCHAR},
+      molWt = #{molWt,jdbcType=VARCHAR},
+      mpmin = #{mpmin,jdbcType=VARCHAR},
+      mpmax = #{mpmax,jdbcType=VARCHAR},
+      bpmin = #{bpmin,jdbcType=VARCHAR},
+      bpmax = #{bpmax,jdbcType=VARCHAR},
+      iarc = #{iarc,jdbcType=VARCHAR},
+      introduction = #{introduction,jdbcType=VARCHAR},
+      appearance = #{appearance,jdbcType=VARCHAR},
+      solubility = #{solubility,jdbcType=VARCHAR},
+      toxicity = #{toxicity,jdbcType=VARCHAR},
+      limitRequirement = #{limitRequirement,jdbcType=VARCHAR},
+      clinicalCharacter = #{clinicalCharacter,jdbcType=VARCHAR},
+      metabolicPathway = #{metabolicPathway,jdbcType=VARCHAR},
+      food = #{food,jdbcType=VARCHAR}
+    where medId = #{medId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yrr.dao.MethodGCMSMapper">
+  <resultMap id="BaseResultMap" type="com.yrr.bean.MethodGCMS">
+    <id column="medId" jdbcType="INTEGER" property="medId" />
+    <result column="ionizationMode" jdbcType="VARCHAR" property="ionizationMode" />
+    <result column="chromatographicCol" jdbcType="VARCHAR" property="chromatographicCol" />
+    <result column="DeterminationMethod" jdbcType="VARCHAR" property="determinationMethod" />
+    <result column="qualityScanRange" jdbcType="VARCHAR" property="qualityScanRange" />
+    <result column="quantitativeIon1" jdbcType="VARCHAR" property="quantitativeIon1" />
+    <result column="quantitativeIon2" jdbcType="VARCHAR" property="quantitativeIon2" />
+    <result column="quantitativeIon3" jdbcType="VARCHAR" property="quantitativeIon3" />
+    <result column="qualitativeIon1" jdbcType="VARCHAR" property="qualitativeIon1" />
+    <result column="qualitativeIon2" jdbcType="VARCHAR" property="qualitativeIon2" />
+    <result column="qualitativeIon3" jdbcType="VARCHAR" property="qualitativeIon3" />
+    <result column="samplePreparation" jdbcType="VARCHAR" property="samplePreparation" />
+    <result column="detectionLimit" jdbcType="VARCHAR" property="detectionLimit" />
+    <result column="featureMap" jdbcType="VARCHAR" property="featureMap" />
+    <result column="reference" jdbcType="VARCHAR" property="reference" />
+    <result column="samples" jdbcType="VARCHAR" property="samples" />
+    <result column="otherDeterminants" jdbcType="VARCHAR" property="otherDeterminants" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    medId, ionizationMode, chromatographicCol, DeterminationMethod, qualityScanRange, 
+    quantitativeIon1, quantitativeIon2, quantitativeIon3, qualitativeIon1, qualitativeIon2, 
+    qualitativeIon3, samplePreparation, detectionLimit, featureMap, reference, samples, 
+    otherDeterminants
+  </sql>
+  <select id="selectByExample" parameterType="com.yrr.bean.MethodGCMSExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from methodgcms
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from methodgcms
+    where medId = #{medId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from methodgcms
+    where medId = #{medId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yrr.bean.MethodGCMSExample">
+    delete from methodgcms
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yrr.bean.MethodGCMS">
+    insert into methodgcms (medId, ionizationMode, chromatographicCol, 
+      DeterminationMethod, qualityScanRange, 
+      quantitativeIon1, quantitativeIon2, quantitativeIon3, 
+      qualitativeIon1, qualitativeIon2, qualitativeIon3, 
+      samplePreparation, detectionLimit, featureMap, 
+      reference, samples, otherDeterminants
+      )
+    values (#{medId,jdbcType=INTEGER}, #{ionizationMode,jdbcType=VARCHAR}, #{chromatographicCol,jdbcType=VARCHAR}, 
+      #{determinationMethod,jdbcType=VARCHAR}, #{qualityScanRange,jdbcType=VARCHAR}, 
+      #{quantitativeIon1,jdbcType=VARCHAR}, #{quantitativeIon2,jdbcType=VARCHAR}, #{quantitativeIon3,jdbcType=VARCHAR}, 
+      #{qualitativeIon1,jdbcType=VARCHAR}, #{qualitativeIon2,jdbcType=VARCHAR}, #{qualitativeIon3,jdbcType=VARCHAR}, 
+      #{samplePreparation,jdbcType=VARCHAR}, #{detectionLimit,jdbcType=VARCHAR}, #{featureMap,jdbcType=VARCHAR}, 
+      #{reference,jdbcType=VARCHAR}, #{samples,jdbcType=VARCHAR}, #{otherDeterminants,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yrr.bean.MethodGCMS">
+    insert into methodgcms
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="medId != null">
+        medId,
+      </if>
+      <if test="ionizationMode != null">
+        ionizationMode,
+      </if>
+      <if test="chromatographicCol != null">
+        chromatographicCol,
+      </if>
+      <if test="determinationMethod != null">
+        DeterminationMethod,
+      </if>
+      <if test="qualityScanRange != null">
+        qualityScanRange,
+      </if>
+      <if test="quantitativeIon1 != null">
+        quantitativeIon1,
+      </if>
+      <if test="quantitativeIon2 != null">
+        quantitativeIon2,
+      </if>
+      <if test="quantitativeIon3 != null">
+        quantitativeIon3,
+      </if>
+      <if test="qualitativeIon1 != null">
+        qualitativeIon1,
+      </if>
+      <if test="qualitativeIon2 != null">
+        qualitativeIon2,
+      </if>
+      <if test="qualitativeIon3 != null">
+        qualitativeIon3,
+      </if>
+      <if test="samplePreparation != null">
+        samplePreparation,
+      </if>
+      <if test="detectionLimit != null">
+        detectionLimit,
+      </if>
+      <if test="featureMap != null">
+        featureMap,
+      </if>
+      <if test="reference != null">
+        reference,
+      </if>
+      <if test="samples != null">
+        samples,
+      </if>
+      <if test="otherDeterminants != null">
+        otherDeterminants,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="medId != null">
+        #{medId,jdbcType=INTEGER},
+      </if>
+      <if test="ionizationMode != null">
+        #{ionizationMode,jdbcType=VARCHAR},
+      </if>
+      <if test="chromatographicCol != null">
+        #{chromatographicCol,jdbcType=VARCHAR},
+      </if>
+      <if test="determinationMethod != null">
+        #{determinationMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="qualityScanRange != null">
+        #{qualityScanRange,jdbcType=VARCHAR},
+      </if>
+      <if test="quantitativeIon1 != null">
+        #{quantitativeIon1,jdbcType=VARCHAR},
+      </if>
+      <if test="quantitativeIon2 != null">
+        #{quantitativeIon2,jdbcType=VARCHAR},
+      </if>
+      <if test="quantitativeIon3 != null">
+        #{quantitativeIon3,jdbcType=VARCHAR},
+      </if>
+      <if test="qualitativeIon1 != null">
+        #{qualitativeIon1,jdbcType=VARCHAR},
+      </if>
+      <if test="qualitativeIon2 != null">
+        #{qualitativeIon2,jdbcType=VARCHAR},
+      </if>
+      <if test="qualitativeIon3 != null">
+        #{qualitativeIon3,jdbcType=VARCHAR},
+      </if>
+      <if test="samplePreparation != null">
+        #{samplePreparation,jdbcType=VARCHAR},
+      </if>
+      <if test="detectionLimit != null">
+        #{detectionLimit,jdbcType=VARCHAR},
+      </if>
+      <if test="featureMap != null">
+        #{featureMap,jdbcType=VARCHAR},
+      </if>
+      <if test="reference != null">
+        #{reference,jdbcType=VARCHAR},
+      </if>
+      <if test="samples != null">
+        #{samples,jdbcType=VARCHAR},
+      </if>
+      <if test="otherDeterminants != null">
+        #{otherDeterminants,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yrr.bean.MethodGCMSExample" resultType="java.lang.Long">
+    select count(*) from methodgcms
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update methodgcms
+    <set>
+      <if test="record.medId != null">
+        medId = #{record.medId,jdbcType=INTEGER},
+      </if>
+      <if test="record.ionizationMode != null">
+        ionizationMode = #{record.ionizationMode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chromatographicCol != null">
+        chromatographicCol = #{record.chromatographicCol,jdbcType=VARCHAR},
+      </if>
+      <if test="record.determinationMethod != null">
+        DeterminationMethod = #{record.determinationMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qualityScanRange != null">
+        qualityScanRange = #{record.qualityScanRange,jdbcType=VARCHAR},
+      </if>
+      <if test="record.quantitativeIon1 != null">
+        quantitativeIon1 = #{record.quantitativeIon1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.quantitativeIon2 != null">
+        quantitativeIon2 = #{record.quantitativeIon2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.quantitativeIon3 != null">
+        quantitativeIon3 = #{record.quantitativeIon3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qualitativeIon1 != null">
+        qualitativeIon1 = #{record.qualitativeIon1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qualitativeIon2 != null">
+        qualitativeIon2 = #{record.qualitativeIon2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qualitativeIon3 != null">
+        qualitativeIon3 = #{record.qualitativeIon3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.samplePreparation != null">
+        samplePreparation = #{record.samplePreparation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.detectionLimit != null">
+        detectionLimit = #{record.detectionLimit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.featureMap != null">
+        featureMap = #{record.featureMap,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reference != null">
+        reference = #{record.reference,jdbcType=VARCHAR},
+      </if>
+      <if test="record.samples != null">
+        samples = #{record.samples,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherDeterminants != null">
+        otherDeterminants = #{record.otherDeterminants,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update methodgcms
+    set medId = #{record.medId,jdbcType=INTEGER},
+      ionizationMode = #{record.ionizationMode,jdbcType=VARCHAR},
+      chromatographicCol = #{record.chromatographicCol,jdbcType=VARCHAR},
+      DeterminationMethod = #{record.determinationMethod,jdbcType=VARCHAR},
+      qualityScanRange = #{record.qualityScanRange,jdbcType=VARCHAR},
+      quantitativeIon1 = #{record.quantitativeIon1,jdbcType=VARCHAR},
+      quantitativeIon2 = #{record.quantitativeIon2,jdbcType=VARCHAR},
+      quantitativeIon3 = #{record.quantitativeIon3,jdbcType=VARCHAR},
+      qualitativeIon1 = #{record.qualitativeIon1,jdbcType=VARCHAR},
+      qualitativeIon2 = #{record.qualitativeIon2,jdbcType=VARCHAR},
+      qualitativeIon3 = #{record.qualitativeIon3,jdbcType=VARCHAR},
+      samplePreparation = #{record.samplePreparation,jdbcType=VARCHAR},
+      detectionLimit = #{record.detectionLimit,jdbcType=VARCHAR},
+      featureMap = #{record.featureMap,jdbcType=VARCHAR},
+      reference = #{record.reference,jdbcType=VARCHAR},
+      samples = #{record.samples,jdbcType=VARCHAR},
+      otherDeterminants = #{record.otherDeterminants,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yrr.bean.MethodGCMS">
+    update methodgcms
+    <set>
+      <if test="ionizationMode != null">
+        ionizationMode = #{ionizationMode,jdbcType=VARCHAR},
+      </if>
+      <if test="chromatographicCol != null">
+        chromatographicCol = #{chromatographicCol,jdbcType=VARCHAR},
+      </if>
+      <if test="determinationMethod != null">
+        DeterminationMethod = #{determinationMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="qualityScanRange != null">
+        qualityScanRange = #{qualityScanRange,jdbcType=VARCHAR},
+      </if>
+      <if test="quantitativeIon1 != null">
+        quantitativeIon1 = #{quantitativeIon1,jdbcType=VARCHAR},
+      </if>
+      <if test="quantitativeIon2 != null">
+        quantitativeIon2 = #{quantitativeIon2,jdbcType=VARCHAR},
+      </if>
+      <if test="quantitativeIon3 != null">
+        quantitativeIon3 = #{quantitativeIon3,jdbcType=VARCHAR},
+      </if>
+      <if test="qualitativeIon1 != null">
+        qualitativeIon1 = #{qualitativeIon1,jdbcType=VARCHAR},
+      </if>
+      <if test="qualitativeIon2 != null">
+        qualitativeIon2 = #{qualitativeIon2,jdbcType=VARCHAR},
+      </if>
+      <if test="qualitativeIon3 != null">
+        qualitativeIon3 = #{qualitativeIon3,jdbcType=VARCHAR},
+      </if>
+      <if test="samplePreparation != null">
+        samplePreparation = #{samplePreparation,jdbcType=VARCHAR},
+      </if>
+      <if test="detectionLimit != null">
+        detectionLimit = #{detectionLimit,jdbcType=VARCHAR},
+      </if>
+      <if test="featureMap != null">
+        featureMap = #{featureMap,jdbcType=VARCHAR},
+      </if>
+      <if test="reference != null">
+        reference = #{reference,jdbcType=VARCHAR},
+      </if>
+      <if test="samples != null">
+        samples = #{samples,jdbcType=VARCHAR},
+      </if>
+      <if test="otherDeterminants != null">
+        otherDeterminants = #{otherDeterminants,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where medId = #{medId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yrr.bean.MethodGCMS">
+    update methodgcms
+    set ionizationMode = #{ionizationMode,jdbcType=VARCHAR},
+      chromatographicCol = #{chromatographicCol,jdbcType=VARCHAR},
+      DeterminationMethod = #{determinationMethod,jdbcType=VARCHAR},
+      qualityScanRange = #{qualityScanRange,jdbcType=VARCHAR},
+      quantitativeIon1 = #{quantitativeIon1,jdbcType=VARCHAR},
+      quantitativeIon2 = #{quantitativeIon2,jdbcType=VARCHAR},
+      quantitativeIon3 = #{quantitativeIon3,jdbcType=VARCHAR},
+      qualitativeIon1 = #{qualitativeIon1,jdbcType=VARCHAR},
+      qualitativeIon2 = #{qualitativeIon2,jdbcType=VARCHAR},
+      qualitativeIon3 = #{qualitativeIon3,jdbcType=VARCHAR},
+      samplePreparation = #{samplePreparation,jdbcType=VARCHAR},
+      detectionLimit = #{detectionLimit,jdbcType=VARCHAR},
+      featureMap = #{featureMap,jdbcType=VARCHAR},
+      reference = #{reference,jdbcType=VARCHAR},
+      samples = #{samples,jdbcType=VARCHAR},
+      otherDeterminants = #{otherDeterminants,jdbcType=VARCHAR}
+    where medId = #{medId,jdbcType=INTEGER}
+  </update>
+</mapper>

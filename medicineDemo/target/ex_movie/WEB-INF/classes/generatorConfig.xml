@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+	<classPathEntry
+		location="C:\Users\Dagony\.m2\repository\mysql\mysql-connector-java\5.1.40\mysql-connector-java-5.1.40.jar" />
+	<context id="context1" targetRuntime="MyBatis3">
+		<!-- 序列化pojo -->
+		<plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+		<commentGenerator>
+			<property name="suppressDate" value="true" />
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://127.0.0.1:3306/medicine2" userId="root"
+			password="854589856" />
+
+		<!-- 指定javaBean生成的位置 -->
+		<javaModelGenerator targetPackage="com.yrr.bean"
+			targetProject="src/main/java">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+		<!--指定sql映射文件生成的位置 -->
+		<sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<javaClientGenerator targetPackage="com.yrr.dao"
+			targetProject="src/main/java" type="XMLMAPPER">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+
+
+		<table schema="medicine" tableName="history" domainObjectName="History">
+			<property name="useActualColumnNames" value="true" />
+		</table>
+
+		<table schema="medicine" tableName="cnalias" domainObjectName="CNAlias">
+
+			<property name="useActualColumnNames" value="true" />
+		</table>
+		<table schema="medicine" tableName="enalias" domainObjectName="ENAlias">
+			<property name="useActualColumnNames" value="true" />
+		</table>
+		<table schema="medicine" tableName="ennames" domainObjectName="ENNames">
+			<property name="useActualColumnNames" value="true" />
+		</table>
+
+		<table schema="medicine" tableName="formula" domainObjectName="Formula">
+			<property name="useActualColumnNames" value="true" />
+		</table>
+		<table schema="medicine" tableName="med" domainObjectName="Med">
+			<property name="useActualColumnNames" value="true" />
+		</table>
+		<table schema="medicine" tableName="methodsers"
+			domainObjectName="MethodSERS">
+			<property name="useActualColumnNames" value="true" />
+		</table>
+		<table schema="medicine" tableName="methodgcms"
+			domainObjectName="MethodGCMS">
+			<property name="useActualColumnNames" value="true" />
+		</table>
+		<table schema="medicine" tableName="methodlc" domainObjectName="MethodLC">
+			<property name="useActualColumnNames" value="true" />
+		</table>
+		<table schema="medicine" tableName="methodlcms"
+			domainObjectName="MethodLCMS">
+			<property name="useActualColumnNames" value="true" />
+		</table>
+	</context>
+</generatorConfiguration>

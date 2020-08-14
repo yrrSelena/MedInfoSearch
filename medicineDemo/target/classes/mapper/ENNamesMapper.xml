@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yrr.dao.ENNamesMapper">
+  <resultMap id="BaseResultMap" type="com.yrr.bean.ENNames">
+    <id column="enNamesId" jdbcType="INTEGER" property="enNamesId" />
+    <result column="enNames" jdbcType="VARCHAR" property="enNames" />
+    <result column="medId" jdbcType="INTEGER" property="medId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    enNamesId, enNames, medId
+  </sql>
+  <select id="selectByExample" parameterType="com.yrr.bean.ENNamesExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ennames
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ennames
+    where enNamesId = #{enNamesId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ennames
+    where enNamesId = #{enNamesId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.yrr.bean.ENNamesExample">
+    delete from ennames
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yrr.bean.ENNames">
+    insert into ennames (enNamesId, enNames, medId
+      )
+    values (#{enNamesId,jdbcType=INTEGER}, #{enNames,jdbcType=VARCHAR}, #{medId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yrr.bean.ENNames">
+    insert into ennames
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="enNamesId != null">
+        enNamesId,
+      </if>
+      <if test="enNames != null">
+        enNames,
+      </if>
+      <if test="medId != null">
+        medId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="enNamesId != null">
+        #{enNamesId,jdbcType=INTEGER},
+      </if>
+      <if test="enNames != null">
+        #{enNames,jdbcType=VARCHAR},
+      </if>
+      <if test="medId != null">
+        #{medId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yrr.bean.ENNamesExample" resultType="java.lang.Long">
+    select count(*) from ennames
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update ennames
+    <set>
+      <if test="record.enNamesId != null">
+        enNamesId = #{record.enNamesId,jdbcType=INTEGER},
+      </if>
+      <if test="record.enNames != null">
+        enNames = #{record.enNames,jdbcType=VARCHAR},
+      </if>
+      <if test="record.medId != null">
+        medId = #{record.medId,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update ennames
+    set enNamesId = #{record.enNamesId,jdbcType=INTEGER},
+      enNames = #{record.enNames,jdbcType=VARCHAR},
+      medId = #{record.medId,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yrr.bean.ENNames">
+    update ennames
+    <set>
+      <if test="enNames != null">
+        enNames = #{enNames,jdbcType=VARCHAR},
+      </if>
+      <if test="medId != null">
+        medId = #{medId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where enNamesId = #{enNamesId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yrr.bean.ENNames">
+    update ennames
+    set enNames = #{enNames,jdbcType=VARCHAR},
+      medId = #{medId,jdbcType=INTEGER}
+    where enNamesId = #{enNamesId,jdbcType=INTEGER}
+  </update>
+</mapper>
