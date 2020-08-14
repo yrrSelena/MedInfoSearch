@@ -1,0 +1,33 @@
+﻿enAliasId,enAlias,medId
+1,Formalin,1.0
+2,"CTX, CPA, ENDOXAN",2.0
+3,BaP,3.0
+4,"Thiophosphoramide, Thiofosyl",4.0
+5,"Myleran,BSF,BUS",5.0
+6,CyrenA,6.0
+7,Diethylstilbestrolum,6.0
+8,Stilbestrol,6.0
+9,Stilboestrol,6.0
+10,hexachlorocyclohexane gamma-isomer,7.0
+11,p-Acetophenetidide,8.0
+12," Acetamide, N-(4-ethoxyphenyl)-",8.0
+13, Achrocidin,8.0
+14,chloroethylene,11.0
+15,p-aminophenylbenzene,18.0
+16,Benzidine,19.0
+17,2-Chlorobenzenamine,21.0
+18,"Melphalan,L-Sarcolysin,L-PAM",23.0
+19,9-methoxypsoralen,24.0
+20, 8-MP,24.0
+21, Puvalen,24.0
+22, Xanthotoxin,24.0
+23, 8-methoxypsoralene,24.0
+24,"Myleran,BSF,BUS",25.0
+25,AAs,27.0
+26,"yperite,lost",31.0
+27,senfgas,31.0
+28,Polychlorodiphenyls,34.0
+29,Berylliumatom,40.0
+30,Cr6+,52.0
+31,Cr^6+,52.0
+32,Cr 6+,52.0

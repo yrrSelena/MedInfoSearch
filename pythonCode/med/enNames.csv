@@ -1,0 +1,59 @@
+﻿enNameId,enName,medId
+1,Formaldehyde,1.0
+2,Cyclophosphamide,2.0
+3,Benzo(a)pyrene,3.0
+4,"3,4-Benzypyrene",3.0
+5,thiotepa,4.0
+6,Busulfan,5.0
+7,Diethylstilbestrol,6.0
+8,LINDANE,7.0
+9,phenacetin,8.0
+10,ethanol,9.0
+11,Benzene,10.0
+12,benzol,10.0
+13,benzeen,10.0
+14,Vinyl chloride,11.0
+15,Acetaldehyde,12.0
+16,"Epoxyethane,Ethylene Oxide",13.0
+17,"1,2-dichlorobenzene",14.0
+18,Trichloroethylene,15.0
+19,Pentachlorophenol,16.0
+20,2-Naphthylamine,17.0
+21,4-Aminobiphenyl,18.0
+22,"4,4'-diaminobiphenyl",19.0
+23,ortho-Toluidinene,20.0
+24,o-Chloroaniline,21.0
+25,"1,3-Butadiene",22.0
+26,Alkeran,23.0
+27,methoxsalen,24.0
+28,Busulfan,25.0
+29,Chlorambucil,26.0
+30,Aristolochic acids,27.0
+31,Azathioprine,29.0
+32,Chlornaphazine,30.0
+33,mustard gas,31.0
+34,Bis(chloromethyl)ether,32.0
+35,asbestos,33.0
+36,Polychorinated biphenyls,34.0
+37,AFT,35.0
+38,Aflatoxins,35.0
+39,Plutonium,37.0
+40,Thorium-232,38.0
+41,Arsenic,39.0
+42,Beryllium,40.0
+43,Cadmium,41.0
+44,coal tar,42.0
+45,Radon-222,43.0
+46,radium,45.0
+47,Phosphorus-32,48.0
+48,silica rock,49.0
+49,N-Nitrosonornicotine,51.0
+50,Hexavalent chromium,52.0
+51,"Etoposide,Etopl,Vepeside.",53.0
+52,Bleomycin,54.0
+53,Bleocin,54.0
+54,BLM,54.0
+55,"2,3,7,8-Tetrachlorodibenzo-para-dioxin",55.0
+56,Coal tar pitc,58.0
+57,Aluminium,64.0
+58,Areca catechu L.,65.0
