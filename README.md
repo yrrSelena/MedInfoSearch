@@ -1,5 +1,13 @@
-# medicineDemo
-药品信息搜索网站
+# MedInfoSearch
+食品中致癌物信息检索网站
+
+
+
+- medicineDemo主要是Java Web相关代码
+- pythonCode中包含数据和数据库创建相关代码
+
+
+
 ## 一、开发环境
 1) 数据库搭建：MySQL
 
